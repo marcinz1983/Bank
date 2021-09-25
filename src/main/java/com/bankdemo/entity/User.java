@@ -50,7 +50,9 @@ public class User {
     inverseJoinColumns   = @JoinColumn(name = "role_id"))
     private List<Role> roles;
 
-    public User(Long id, String name, String surname, String password, String username, String email, String pesel, List<Account> accounts, List<Card> card, List<Role> roles) {
+    public User(Long id, String name, String surname, String password,
+                String username, String email, String pesel,
+                List<Account> accounts, List<Card> card, List<Role> roles) {
         this.id = id;
         this.name = name;
         this.surname = surname;
