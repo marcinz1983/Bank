@@ -17,6 +17,7 @@ import static java.util.Objects.nonNull;
 @Service
 public class CurrencyService {
 
+//    public  final OpenNotifyConnector openNotifyConnector;
     public static final Logger logger = LoggerFactory.getLogger(CardService.class);
     public final CurrencyRepository currencyRepository;
     public final CurrencyMapper currencyMapper;
@@ -33,14 +34,27 @@ public class CurrencyService {
         return currencyMapper.fromEntityToDto(currencyRepository.save(currencyToSave));
     }
 
-    public List<CurrencyDTO> findAllCurrency() {
+/*    public List<CurrencyDTO> findAllCurrency() {
         var result = currencyRepository.findAll()
                 .stream()
                 .map(currencyMapper::fromEntityToDto)
                 .collect(Collectors.toList());
         logger.info("Return currency list size is : [{}]", result.size());
         return result;
+    }*/
+
+
+    public List<CurrencyDTO> findAllCurrency() {
+       // var result =
+       // logger.info("Return currency list size is : [{}]", result.size());
+        return null;
     }
+
+
+
+
+
+
 
     public CurrencyDTO findCurrencyById(Long id) {
         var result = finCurrencyByIdFromRepository(id);
