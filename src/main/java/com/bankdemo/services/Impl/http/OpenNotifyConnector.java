@@ -1,10 +1,8 @@
-package com.bankdemo.services.Impl;
+package com.bankdemo.services.Impl.http;
 
 
 import com.bankdemo.DTO.CurrencyExchangeRatesDTO;
 import com.bankdemo.converter.JacksonJsonMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,12 +12,12 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
+@Service
 public class OpenNotifyConnector {
 
 
 
-    public   final HttpClient httpClient;
+    HttpClient client = HttpClient.newHttpClient();
 
     public   final JacksonJsonMapper jsonMapper;
 
@@ -29,15 +27,16 @@ public class OpenNotifyConnector {
 
 
 
-    public OpenNotifyConnector( HttpClient httpClient, JacksonJsonMapper jsonMapper) {
-        this.httpClient = httpClient;
+    public OpenNotifyConnector(  JacksonJsonMapper jsonMapper) {
         this.jsonMapper = jsonMapper;
     }
 
 
+
     public  Optional<CurrencyExchangeRatesDTO> getCurrencyFromApi(){
         try{
-            final var response = httpClient.send(currentlyValidTableOfExchangeRates, HttpResponse.BodyHandlers.ofString());
+
+            final var response = client.send(currentlyValidTableOfExchangeRates, HttpResponse.BodyHandlers.ofString());
           if(response.statusCode() == 200){
               return Optional.ofNullable(jsonMapper.mapCurrencyFromJson(response.body()));
           }

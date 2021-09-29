@@ -12,7 +12,7 @@ public class CurrencyExchangeRatesDTO {
     private final List<TableOfCurrency> List0;
 
     @JsonCreator
-    public CurrencyExchangeRatesDTO(@JsonProperty("0") List<TableOfCurrency> list0) {
+    public CurrencyExchangeRatesDTO(@JsonProperty("Source") List<TableOfCurrency> list0) {
         List0 = list0;
     }
 
@@ -20,6 +20,7 @@ public class CurrencyExchangeRatesDTO {
         return List0;
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class TableOfCurrency {
 
     private final String no;
